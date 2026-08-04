@@ -1,5 +1,15 @@
 # onboarding-mission
 
+** convention 예시 **
+Feat: 퀴즈 출제 기능 구현
+
+Fix: 점수 계산 오류 수정
+
+Docs: README 실행 방법 추가
+
+Refactor: QuizGame 책임 분리
+
+
 **프로젝트 개요(미션 목표 요약)**
 
 1. 실행 환경(OS/쉘/터미널, Docker 버전, Git 버전)
