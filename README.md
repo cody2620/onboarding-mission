@@ -1,6 +1,102 @@
 # 프로젝트 개요(미션 목표 요약)
 
 # 실행 환경(OS/쉘/터미널, Docker 버전, Git 버전)
+- orbctl version
+```
+Version: 2.0.5 (2000500)
+Commit: - (v2.0.5)
+```
+
+- docker --version
+```
+Docker version 28.5.2, build ecc6942
+```
+
+- docker info
+```
+Client:
+ Version:    28.5.2
+ Context:    orbstack
+ Debug Mode: false
+ Plugins:
+  buildx: Docker Buildx (Docker Inc.)
+    Version:  v0.29.1
+    Path:     /Users/-
+  compose: Docker Compose (Docker Inc.)
+    Version:  v2.40.3
+    Path:     /Users/-
+
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 0
+ Server Version: 28.5.2
+ Storage Driver: overlay2
+  Backing Filesystem: btrfs
+  Supports d_type: true
+  Using metacopy: false
+  Native Overlay Diff: true
+  userxattr: false
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Cgroup Version: 2
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+ CDI spec directories:
+  /etc/cdi
+  /var/run/cdi
+ Swarm: inactive
+ Runtimes: io.containerd.runc.v2 runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: # 빈값이지만 버전 정보
+ runc version: # 빈값이지만 버전 정보
+ init version: # 빈값이지만 버전 정보
+ Security Options:
+  seccomp
+   Profile: builtin
+  cgroupns
+ Kernel Version: # 빈값이지만 커널 정보
+ Operating System: OrbStack
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 6
+ Total Memory: 15.67GiB
+ Name: orbstack 호스트명(개인정보)
+ ID: #-#-#-#-# 도커 데몬 고유 아이디
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ Experimental: false
+ Insecure Registries:
+  ::0/000 네트워크 설정 노출
+  000.0.0.0/0
+ Live Restore Enabled: false
+ Product License: Community Engine
+ Default Address Pools: # IP 풀 설정
+   Base: 000.000.00.0/00, Size: 00
+   ~ 
+   Base: ____:____:____:____::/__, Size: 00
+
+```
+
+- 터미널 출력을 파일로 저장(결과: permission denied)
+docker --version > ~/docker-mission/logs/01-docker-version.log
+docker info >> ~/docker-mission/logs/01-docker-version.log
+
+- 저장 확인(아직 실행 X)
+cat ~/docker-mission/logs/01-docker-version.log
+
+- hello-world 이미지로 테스트 
+docker run --rm hello-world
+
+- 3단계 웹서버 Dokerfile 작성과 빌드
+
+- 4단계: 포트 매핑 & 바인드 마운트 & 볼륨 실습 (1시간) << 여기서부터 ㄱㄱ
+
 
 # 수행 항목 체크리스트(터미널/권한/Docker/Dockerfile/포트/볼륨/Git/GitHub)
 
