@@ -1,0 +1,30 @@
+# Docker
+.docker/
+docker-compose.override.yml
+
+# 볼륨 데이터 (민감한 정보)
+volumes/
+*.log
+
+# OS (macOS)
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# 민감한 정보
+.env
+.env.local
+*.pem
+*.key
+secrets/
+
+# 임시 파일
+*.tmp
+*.bak
