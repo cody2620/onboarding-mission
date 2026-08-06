@@ -84,14 +84,20 @@ Server:
 ```
 
 - 터미널 출력을 파일로 저장(결과: permission denied)
-docker --version > ~/docker-mission/logs/01-docker-version.log
+```
+docker --version ~/docker-mission/logs/01-docker-version.log
 docker info >> ~/docker-mission/logs/01-docker-version.log
+```
 
 - 저장 확인(아직 실행 X)
+```
 cat ~/docker-mission/logs/01-docker-version.log
+```
 
 - hello-world 이미지로 테스트 
+```
 docker run --rm hello-world
+```
 
 - 3단계 웹서버 Dokerfile 작성과 빌드
 
