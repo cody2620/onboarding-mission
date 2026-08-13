@@ -105,8 +105,9 @@ docker run --rm hello-world
   * 포트볼륨 생성, 연결
 <img width="1330" height="810" alt="포트볼륨 생성_연결" src="https://github.com/user-attachments/assets/de355f47-6aad-4d44-844d-cf6cb68ebca4" />
  
- * 포트볼륨 수정 후(오류났다)
- <img width="1330" height="810" alt="포트볼륨 수정 후" src="https://github.com/user-attachments/assets/afbaadf5-00df-4606-a255-c743b8262e2c" />
+ * 포트볼륨 수정 후
+<img width="948" height="629" alt="포트볼륨 수정 후 성공" src="https://github.com/user-attachments/assets/c8c9b290-cf6a-4b87-9f63-a8cd0d0df712" />
+
 
 
 
@@ -115,6 +116,31 @@ docker run --rm hello-world
 # 검증 방법(어떤 명령으로 무엇을 확인했는지) + 결과 위치 링크
 
 # 트러블슈팅 2건 이상(문제 → 원인 가설 → 확인 → 해결/대안)
+* 포트 볼륨 수정 후 문자 깨짐 현상
+<img width="1330" height="810" alt="포트볼륨 수정 후" src="https://github.com/user-attachments/assets/f263b99c-51af-49ab-acbb-f1597cc44bb8" />
+
+  - Docker 컨테이너로 실행 중인 Nginx 웹 서버에서 HTML 페이지를 호출할 때, 한글이 정상적으로 출력되지 않고 깨짐 현상이 발생함.\n
+HTML 소스 코드 내에 <meta charset="UTF-8">이 명시되어 있음에도 불구하고 브라우저에서 인코딩 오류가 지속됨.
+
+  - 원인분석
+   2.1 HTTP 응답 헤더의 우선순위 문제
+브라우저가 웹 페이지의 인코딩을 결정할 때, HTML 문서 내부의 <meta> 태그보다 웹 서버가 보내는 HTTP 응답 헤더(Response Header)의 정보를 우선적으로 신뢰합니다.
+
+현재 상태: Nginx의 기본 설정에는 Content-Type 헤더에 charset 정보가 누락되어 있거나, 기본값(예: ISO-8859-1)으로 설정되어 있음.
+결과: 브라우저는 서버가 보낸 헤더 정보를 따라 페이지를 해석하려 시도하며, 이 과정에서 UTF-8로 작성된 한글 데이터를 잘못된 방식으로 렌더링하여 깨짐 현상이 발생함.
+
+2.2 인코딩 결정 흐름
+브라우저가 서버에 페이지 요청.
+서버(Nginx)가 응답을 보낼 때 헤더에 Content-Type: text/html만 전달 (charset 미지정).
+브라우저는 서버의 지시가 없으므로 기본 인코딩으로 해석 시작.
+HTML 내부의 <meta charset="UTF-8">을 발견하기 전에 이미 헤더 정보를 바탕으로 렌더링을 시작하여 한글이 깨짐.
+
+  - 해결
+   Nginx 설정 파일에서 HTTP 응답 헤더에 UTF-8 인코딩을 명시하도록 수정합니다.
+
+   Nginx 설정 파일(보통 /etc/nginx/conf.d/default.conf)의 server 블록 또는 location 블록에 charset utf-8; 지시어를 추가합니다.
+
+   강한 새로고침 실행 커맨드+시프트+R
 
 ** ** 
 
