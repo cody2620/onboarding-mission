@@ -1,8 +1,8 @@
-# 프로젝트 개요
+## 프로젝트 개요
 Docker의 핵심 개념과 실무 워크플로우를 습득하고, 재현 가능한 컨테이너 환경 구축을 경험하는 것을 목표로 한다. 
 </br>
 
-# 실행 환경(OS/쉘/터미널, Docker 버전, Git 버전)
+## 실행 환경(OS/쉘/터미널, Docker 버전, Git 버전)
 - orbctl version
 ```
 Version: 2.0.5 (2000500)
@@ -113,7 +113,17 @@ docker run --rm hello-world
 
 
 
-# 수행 항목 체크리스트(터미널/권한/Docker/Dockerfile/포트/볼륨/Git/GitHub)
+## 수행 항목 체크리스트(터미널/권한/Docker/Dockerfile/포트/볼륨/Git/GitHub)
+- [x] 터미널 기본 조작 및 폴더 구성
+- [x] 권한 변경 실습
+- [x] Docker 설치/점검
+- [x] hello-world 실행
+- [x] Dockerfile 빌드/실행
+- [x] 포트 매핑 접속(2회)
+- [x] 바인드 마운트 반영
+- [x] 볼륨 영속성
+- [x] Git 설정 + VSCode GitHub 연동
+
 
 # 검증 방법(어떤 명령으로 무엇을 확인했는지) + 결과 위치 링크
 
