@@ -177,15 +177,34 @@ cd ~/onboarding-mission
 
 # 이미지 빌드 (태그: onboarding-mission:v1)
 docker build -t onboarding-mission:v1 .
+```
+<img width="837" height="663" alt="이미지 빌드" src="https://github.com/user-attachments/assets/6723b561-a6d6-4642-9b0b-1272f5fc8f2f" />
+<br><br>
 
+
+```
 # 빌드 결과 확인
 docker images | grep onboarding-mission
 ```
+<img width="837" height="42" alt="빌드결과 확인" src="https://github.com/user-attachments/assets/5773de4b-1eb0-476f-8b9c-5cdf074b4a8b" />
+
 
 
 3. 컨테이너 실행(포트 매핑)
+```
+# 컨테이너 실행
+# -d: 백그라운드 실행
+# -p 8080:80: 호스트의 8080 포트 → 컨테이너의 80 포트
+# --name: 컨테이너 이름
+docker run -d -p 8080:80 --name my-web docker-mission:v1
 
- 
+# 실행 확인
+docker ps
+```
+<img width="1510" height="61" alt="포트 매핑" src="https://github.com/user-attachments/assets/bec5857e-dd2f-47e2-a676-fd3324773deb" />
+
+4. 브라우저 접속 확인
+-----
 
 ## 포트 매핑 접속 2회
 - 4단계: 포트 매핑 & 바인드 마운트 & 볼륨 실습 (1시간) << 여기서부터 ㄱㄱ
