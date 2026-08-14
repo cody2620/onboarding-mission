@@ -1,8 +1,27 @@
 ## 프로젝트 개요
 Docker의 핵심 개념과 실무 워크플로우를 습득하고, 재현 가능한 컨테이너 환경 구축을 경험하는 것을 목표로 한다. 
-</br>
+<br><br>
 
 ## 실행 환경(OS/쉘/터미널, Docker 버전, Git 버전)
+- OS
+```
+sw_vers
+```
+<img width="412" height="62" alt="os버전" src="https://github.com/user-attachments/assets/3fbd6fe5-f8e6-4724-aaba-c440da0946e8" />  
+<br><br>
+
+- 쉘
+```
+ zsh --version
+```
+<img width="359" height="22" alt="zsh" src="https://github.com/user-attachments/assets/a1396672-c422-4ccb-92ec-a771d6557ab8" />
+<br><br>
+
+- git --version
+```
+git version 2.53.0
+```
+
 - orbctl version
 ```
 Version: 2.0.5 (2000500)
@@ -85,6 +104,8 @@ Server:
 
 ```
 
+
+## 터미널 기본 조작 및 폴더 구성
 - 터미널 출력을 파일로 저장
 ```
 docker --version > ~/onboarding-mission/logs/01-docker-version.log
@@ -101,8 +122,10 @@ cat ~/onboarding-mission/logs/01-docker-version.log
 docker run --rm hello-world
 ```
 
+## 도커 파일 빌드/실행
 - 3단계 웹서버 Dokerfile 작성과 빌드
 
+## 포트 매핑 접속 2회
 - 4단계: 포트 매핑 & 바인드 마운트 & 볼륨 실습 (1시간) << 여기서부터 ㄱㄱ
   * 포트볼륨 생성, 연결
 <img width="1330" height="810" alt="포트볼륨 생성_연결" src="https://github.com/user-attachments/assets/de355f47-6aad-4d44-844d-cf6cb68ebca4" />
@@ -110,7 +133,9 @@ docker run --rm hello-world
  * 포트볼륨 수정 후
 <img width="948" height="629" alt="포트볼륨 수정 후 성공" src="https://github.com/user-attachments/assets/c8c9b290-cf6a-4b87-9f63-a8cd0d0df712" />
 
+## 바운드 마운트 반영
 
+## 볼륨 영속성
 
 
 ## 수행 항목 체크리스트(터미널/권한/Docker/Dockerfile/포트/볼륨/Git/GitHub)
