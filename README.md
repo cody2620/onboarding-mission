@@ -104,8 +104,26 @@ Server:
 
 ```
 
+- hello-world 이미지로 테스트 
+```
+docker run --rm hello-world
+```
+<img width="843" height="417" alt="hello-world" src="https://github.com/user-attachments/assets/e9cb84a6-3aea-44b6-a062-59ffd3803056" />
+<br><br>
 
 ## 터미널 기본 조작 및 폴더 구성
+
+- 작업 디렉토리 생성
+```
+# 디렉토리 만들기, 나의 위치 이동
+mkdir -p ~/onboarding-mission
+cd ~/onboarding-mission
+
+# 프로젝트 구조 미리 만들기
+mkdir -p app logs volumes
+touch Dockerfile README.md
+```
+
 - 터미널 출력을 파일로 저장
 ```
 docker --version > ~/onboarding-mission/logs/01-docker-version.log
@@ -114,13 +132,25 @@ docker info >> ~/onboarding-mission/logs/01-docker-info.log
 
 - 저장 확인
 ```
-cat ~/onboarding-mission/logs/01-docker-version.log
+cat ~/onboarding-mission/logs/docker-version.log
 ```
 
-- hello-world 이미지로 테스트 
+- 권한 확인 및 설정 
 ```
-docker run --rm hello-world
+# 현재 디렉토리 권한 확인
+ls -la ~/onboarding-mission
 ```
+<img width="779" height="221" alt="권한 확인" src="https://github.com/user-attachments/assets/2823c08f-ef9c-4f78-839b-235b781c0185" />
+
+<br><br>
+```
+# 필요시 권한 설정(보통 755)
+chmod 755 ~/onboarding-mission
+```
+
+<br><br>
+
+
 
 ## 도커 파일 빌드/실행
 - 3단계 웹서버 Dokerfile 작성과 빌드
