@@ -144,16 +144,48 @@ ls -la ~/onboarding-mission
 
 <br><br>
 ```
-# 필요시 권한 설정(보통 755)
-chmod 755 ~/onboarding-mission
+# 권한 설정하기(보통 755) : 644에서 600로 변경
+chmod 600 Dockerfile
 ```
+<img width="779" height="222" alt="스크린샷 2026-08-14 오후 6 40 27" src="https://github.com/user-attachments/assets/7df358d3-e890-4096-8447-459b5a51f9b0" />
 
 <br><br>
 
 
-
 ## 도커 파일 빌드/실행
-- 3단계 웹서버 Dokerfile 작성과 빌드
+1. Dockerfile 작성
+
+파일 위치: onboarding-mission/Dockerfile
+
+```
+# 기반이 되는 이미지 선택
+FROM nginx:latest
+
+# 내 컴퓨터의 파일을 컨테이너 안으로 복사(컨테이너의 웹 루트로 복사)
+COPY app/ /usr/share/nginx/html/
+
+# 포트 80을 노출 (문서화 목적)
+EXPOSE 80
+
+# nginx 실행(컨테이너 실행)
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+2. 도커 이미지 빌드
+```
+cd ~/onboarding-mission
+
+# 이미지 빌드 (태그: onboarding-mission:v1)
+docker build -t onboarding-mission:v1 .
+
+# 빌드 결과 확인
+docker images | grep onboarding-mission
+```
+
+
+3. 컨테이너 실행(포트 매핑)
+
+ 
 
 ## 포트 매핑 접속 2회
 - 4단계: 포트 매핑 & 바인드 마운트 & 볼륨 실습 (1시간) << 여기서부터 ㄱㄱ
