@@ -126,8 +126,8 @@ touch Dockerfile README.md
 
 - 터미널 출력을 파일로 저장
 ```
-docker --version > ~/onboarding-mission/logs/01-docker-version.log
-docker info >> ~/onboarding-mission/logs/01-docker-info.log
+docker --version > ~/onboarding-mission/logs/docker-version.log
+docker info >> ~/onboarding-mission/logs/docker-info.log
 ```
 
 - 저장 확인
@@ -150,6 +150,29 @@ chmod 600 Dockerfile
 <img width="779" height="222" alt="스크린샷 2026-08-14 오후 6 40 27" src="https://github.com/user-attachments/assets/7df358d3-e890-4096-8447-459b5a51f9b0" />
 
 <br><br>
+
+- 웹 서버 코드 작성
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Docker Mission</title>
+    <style>
+        body { font-family: Arial; text-align: center; margin-top: 50px; }
+        h1 { color: #0066cc; }
+    </style>
+</head>
+<body>
+    <h1>🐳 Docker Mission 성공!</h1>
+    <p>이 페이지는 Docker 컨테이너에서 실행 중입니다.</p>
+    <p>현재 시간: <span id="time"></span></p>
+    <script>
+        document.getElementById('time').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>
+```
 
 
 ## 도커 파일 빌드/실행
@@ -187,8 +210,7 @@ docker build -t onboarding-mission:v1 .
 docker images | grep onboarding-mission
 ```
 <img width="837" height="42" alt="빌드결과 확인" src="https://github.com/user-attachments/assets/5773de4b-1eb0-476f-8b9c-5cdf074b4a8b" />
-
-
+<br><br>
 
 3. 컨테이너 실행(포트 매핑)
 ```
@@ -202,19 +224,65 @@ docker run -d -p 8080:80 --name my-web docker-mission:v1
 docker ps
 ```
 <img width="1510" height="61" alt="포트 매핑" src="https://github.com/user-attachments/assets/bec5857e-dd2f-47e2-a676-fd3324773deb" />
+<br><br>
 
-4. 브라우저 접속 확인
------
+4. 접속 확인
+```
+# 터미널에서 curl로 확인
+curl http://localhost:8080
+```
+<img width="974" height="363" alt="curl 접속확인" src="https://github.com/user-attachments/assets/80a0fb43-68ad-427a-8f78-d74ac55d007f" />
+<br><br>
 
-## 포트 매핑 접속 2회
-- 4단계: 포트 매핑 & 바인드 마운트 & 볼륨 실습 (1시간) << 여기서부터 ㄱㄱ
+```
+# 브라우저에서 직접 접속
+# http://localhost:8080
+```
+<img width="615" height="363" alt="스크린샷 2026-08-16 오후 4 43 55" src="https://github.com/user-attachments/assets/19b355d3-ebaa-4bbd-9c21-5446d63ca43e" />
+
+## 바운드 마운트 반영
+```
+# 기존 컨테이너 중지 및 삭제
+docker stop my-web
+docker rm my-web
+
+# 바인드 마운트로 다시 실행
+# -v ~/onboarding-mission/app:/usr/share/nginx/html: 호스트 폴더 ↔ 컨테이너 폴더 연결
+docker run -d -p 8080:80 \
+  -v ~/onboarding-mission/app:/usr/share/nginx/html \
+  --name my-web-bind onboarding-mission:v1
+
+# 실행 확인
+docker ps
+```
+* 호스트에서 파일 수정
+```
+# app/index.html
+cat > ~/onboarding-mission/app/index.html << 'EOF'
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Docker Mission - 수정됨!</title>
+    <style>
+        body { font-family: Arial; text-align: center; margin-top: 50px; background-color: #f0f0f0; }
+        h1 { color: #ff6600; }
+    </style>
+</head>
+<body>
+    <h1>🎉 파일이 수정되었습니다!</h1>
+    <p>바인드 마운트가 정상 작동합니다.</p>
+    <p>호스트에서 수정한 파일이 컨테이너에 즉시 반영됩니다.</p>
+</body>
+</html>
+EOF
+```
   * 포트볼륨 생성, 연결
 <img width="1330" height="810" alt="포트볼륨 생성_연결" src="https://github.com/user-attachments/assets/de355f47-6aad-4d44-844d-cf6cb68ebca4" />
  
  * 포트볼륨 수정 후
 <img width="948" height="629" alt="포트볼륨 수정 후 성공" src="https://github.com/user-attachments/assets/c8c9b290-cf6a-4b87-9f63-a8cd0d0df712" />
 
-## 바운드 마운트 반영
 
 ## 볼륨 영속성
 
@@ -259,6 +327,12 @@ HTML 내부의 <meta charset="UTF-8">을 발견하기 전에 이미 헤더 정�
    Nginx 설정 파일(보통 /etc/nginx/conf.d/default.conf)의 server 블록 또는 location 블록에 charset utf-8; 지시어를 추가합니다.
 
    강한 새로고침 실행 커맨드+시프트+R
+
+
+* 포트볼륨 수정 후 403 forbidden
+<img width="615" height="363" alt="스크린샷 2026-08-16 오후 5 05 04" src="https://github.com/user-attachments/assets/eb9b2889-11b2-42db-b2d1-8c0cb0a226d5" />
+
+  
 
 ** ** 
 
