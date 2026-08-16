@@ -124,6 +124,18 @@ mkdir -p app logs volumes
 touch Dockerfile README.md
 ```
 
+* 프로젝트 구조
+```
+onboarding-mission/
+├── README.md           (메인 문서)
+├── Dockerfile          (이미지 정의)
+├── app/
+│   └── index.html      (웹 서버 코드)
+├── logs/               (실행 로그)
+│   └── docker-version.log
+└── volumes/            
+```
+
 - 터미널 출력을 파일로 저장
 ```
 docker --version > ~/onboarding-mission/logs/docker-version.log
@@ -286,6 +298,58 @@ EOF
 
 ## 볼륨 영속성
 
+* 컨테이너 삭제 후에도 데이터가 유지되는지 확인
+  
+1. 볼륨 생성
+```
+docker volume create my-data
+```
+
+<img width="670" height="206" alt="볼륨 생성" src="https://github.com/user-attachments/assets/08e10ba4-f85d-4248-b3b7-40e449dcc6ae" />
+<br><br>
+
+2. 볼륨을 마운트하여 컨테이너 실행
+```
+docker run -d -p 8081:80 \
+  -v my-data:/data \
+  --name my-web-volume onboarding-mission:v1
+```
+
+<br><br>
+
+3. 컨테이너 내부에 파일 생성
+```
+docker exec my-web-volume sh -c 'echo "중요한 데이터입니다" > /data/important.txt'
+```
+<img width="741" height="323" alt="스크린샷 2026-08-16 오후 6 02 58" src="https://github.com/user-attachments/assets/f95ccb08-55f2-4c93-9c7e-8e9c151ce98d" />
+<br><br>
+
+4. 파일 확인
+```
+docker exec my-web-volume cat /data/important.txt
+```
+<img width="832" height="39" alt="스크린샷 2026-08-16 오후 6 03 39" src="https://github.com/user-attachments/assets/4790b850-8bc1-4940-a96e-2bcacf3b8bb1" />
+
+<br><br>
+
+5. 컨테이너 삭제
+```
+docker stop my-web-volume
+docker rm my-web-volume
+<img width="670" height="206" alt="볼륨 생성" src="https://github.com/user-attachments/assets/98d1c73c-8b37-4b33-9920-8c2c5669c308" />
+<img width="670" height="206" alt="볼륨 생성" src="https://github.com/user-attachments/assets/1ec0d9ae-04c4-4a73-bdf0-32ff74a73dfd" />
+
+# 하지만 볼륨 여전히 존재
+docker volume ls | grep my-data
+```
+
+6. 볼륨 내용 확인
+```
+docker run --rm -v my-data:/data alpine cat /data/important.txt
+```
+<img width="955" height="39" alt="스크린샷 2026-08-16 오후 6 06 17" src="https://github.com/user-attachments/assets/3523c0ee-4b58-49da-961b-719f66ff4532" />
+
+<br><br>
 
 ## 수행 항목 체크리스트(터미널/권한/Docker/Dockerfile/포트/볼륨/Git/GitHub)
 - [x] 터미널 기본 조작 및 폴더 구성
@@ -332,6 +396,7 @@ HTML 내부의 <meta charset="UTF-8">을 발견하기 전에 이미 헤더 정�
 * 포트볼륨 수정 후 403 forbidden
 <img width="615" height="363" alt="스크린샷 2026-08-16 오후 5 05 04" src="https://github.com/user-attachments/assets/eb9b2889-11b2-42db-b2d1-8c0cb0a226d5" />
 
+- 원인: 폴더 경로가 잘못됨
   
 
 ** ** 
