@@ -214,8 +214,13 @@ cd ~/onboarding-mission
 docker build -t onboarding-mission:v1 .
 ```
 <img width="837" height="663" alt="이미지 빌드" src="https://github.com/user-attachments/assets/6723b561-a6d6-4642-9b0b-1272f5fc8f2f" />
-<br><br>
 
+```
+docker images
+```
+<img width="652" height="92" alt="스크린샷 2026-08-16 오후 6 14 58" src="https://github.com/user-attachments/assets/9137ebf3-f969-4395-bedf-7e0566bdaaaf" />
+
+<br><br>
 
 ```
 # 빌드 결과 확인
@@ -304,7 +309,6 @@ EOF
 ```
 docker volume create my-data
 ```
-
 <img width="670" height="206" alt="볼륨 생성" src="https://github.com/user-attachments/assets/08e10ba4-f85d-4248-b3b7-40e449dcc6ae" />
 <br><br>
 
@@ -314,8 +318,6 @@ docker run -d -p 8081:80 \
   -v my-data:/data \
   --name my-web-volume onboarding-mission:v1
 ```
-
-<br><br>
 
 3. 컨테이너 내부에 파일 생성
 ```
@@ -336,12 +338,11 @@ docker exec my-web-volume cat /data/important.txt
 ```
 docker stop my-web-volume
 docker rm my-web-volume
-<img width="670" height="206" alt="볼륨 생성" src="https://github.com/user-attachments/assets/98d1c73c-8b37-4b33-9920-8c2c5669c308" />
-<img width="670" height="206" alt="볼륨 생성" src="https://github.com/user-attachments/assets/1ec0d9ae-04c4-4a73-bdf0-32ff74a73dfd" />
 
 # 하지만 볼륨 여전히 존재
 docker volume ls | grep my-data
 ```
+<br>
 
 6. 볼륨 내용 확인
 ```
