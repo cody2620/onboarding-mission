@@ -282,9 +282,89 @@ exit
 
 <img width="763" height="280" alt="스크린샷 2026-08-17 오후 3 56 18" src="https://github.com/user-attachments/assets/bea13b47-1a13-43e4-9de3-9a59734d5826" />
 
-# 컨테이너 종료/ 유지
+## 컨테이너 종료와 유지의 차이
+attach와 exec는 이미 실행 중인 컨테이너에 접근하는 방법
 
-- 컨테이너 종료/유지(attach/exec 등)의 차이를 스스로 관찰하고 간단히 정리한다. 
+* attach 방식
+```
+# nginx 웹 서버를 백그라운드에서 실행
+docker run -d -p 8080:80 --name 컨테이너 이름 nginx
+
+# 컨테이너 실행 확인
+docker ps
+
+# attach로 접근
+docker attach 컨테이너 이름
+
+# 브라우저나 터미널로 접속 후 터미널을 보면 메인 프로세스의 실시간 로그가 보임
+
+# 컨테이너 종료 후 확인
+docker ps -a | grep my-nginx
+```
+
+* exec 방식
+```
+# 새 컨테이너 실행
+docker run -d -p 8080:80 --name my-exec nginx
+
+# exec로 bash 접근
+docker exec -it my-exec bash
+
+# 현재 디렉토리 확인
+pwd
+
+# ngnix 설정파일 확인
+cat /etc/nginx/nginx.conf | head -20
+# 결과 예시
+user nginx;
+worker_processes auto;
+error_log /var/log/nginx/error.log warn;
+pid /var/run/nginx.pid;
+
+events {
+    worker_connections 1024;
+}
+...
+
+# 웹 루트 디렉토리 확인
+ls -la /usr/share/nginx/html/
+# 결과 예시
+total 8
+drwxr-xr-x 2 root root  25 Aug 16 12:00 .
+drwxr-xr-x 3 root root  17 Aug 16 12:00 ..
+-rw-r--r-- 1 root root 612 Aug 16 12:00 index.html
+
+# 환경변수 확인
+echo $PATH
+
+# 프로세스 확인
+ps aux
+# 실행이 안될 경우 패키지 추가 설치 하기
+apt update
+apt install -y procps
+
+# 테스트를 위한 새로운 파일 생성
+touch /tmp/test_file.txt
+ls -la /tmp/test_file.txt
+
+# 종료
+exit
+
+# exec는 종료해도 컨테이너(ngnix)는 계속 실행돼고 있다 
+```
+
+* 🎓 학습 요점
+
+| 배운 내용 | 설명 |
+|----------|------|
+| **Attach의 목적** | 메인 프로세스의 실시간 로그 확인 |
+| **Attach의 위험** | Ctrl+C로 프로세스 종료됨 |
+| **Exec의 목적** | 컨테이너 내부에서 자유로운 명령 실행 |
+| **Exec의 안전성** | 종료해도 원래 프로세스는 계속 실행 |
+| **권장 방식** | 항상 exec 사용, attach는 주의 깊게 |
+
+
+## Dockerfile 기반 커스텀 이미지 제작
 
 
 6. 기존 Dockerfile 기반 커스텀 이미지 제작
