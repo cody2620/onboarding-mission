@@ -365,12 +365,39 @@ exit
 
 
 ## Dockerfile 기반 커스텀 이미지 제작
+* (B) Linux 베이스 이미지(예: ubuntu/alpine 등) + 기본 기능(패키지/사용자/환경변수/헬스체크 등) 추가
+
+* 경로
+```
+Desktop/onboarding-mission/ubuntu-custom
+```
+
+* 빌드, 실행 명령
+  - 빌드, 빌드 성공
+  ```
+  # 빌드
+  docker build -t ubuntu-custom:v1 .
+
+  # 빌드 성공 확인
+  docker images | grep ubuntu-custom
+  ```
+  <img width="942" height="455" alt="스크린샷 2026-08-17 오후 5 53 18" src="https://github.com/user-attachments/assets/caf450fd-3fff-43d0-b64a-ccd8983de4ec" />
+  
+  - 컨테이너 실행
+    1. 직접 제어
+    <img width="1019" height="342" alt="스크린샷 2026-08-17 오후 6 01 59" src="https://github.com/user-attachments/assets/427e4fbc-c179-41b1-a929-54dd2a034fb4" />
 
 
-6. 기존 Dockerfile 기반 커스텀 이미지 제작
-- 아래 방식 중 하나를 선택하여 기존 Dockerfile/이미지 기반의 커스텀 이미지를 만든다.
-  * (A) 웹 서버 베이스 이미지 활용(예: NGINX/Apache 등) + 정적 콘텐츠/설정만 교체
-  * (B) Linux 베이스 이미지(예: ubuntu/alpine 등) + 기본 기능(패키지/사용자/환경변수/헬스체크 등) 추가
+    2. 백그라운드 실행
+    
+
+  
+
+  - 컨테이너 실행 성공
+    
+* 내가 적용한 커스텀 포인트 각각의 목적
+
+* 핵심결과
 
 
 ## 바운드 마운트 반영
