@@ -133,7 +133,10 @@ onboarding-mission/
 │   └── index.html      (웹 서버 코드)
 ├── logs/               (실행 로그)
 │   └── docker-version.log
-└── volumes/            
+└── volumes/
+└── ubuntu-custom/      (커스텀 이미지 실습)
+    └── Dockerfile
+
 ```
 
 - 터미널 출력을 파일로 저장
@@ -386,16 +389,20 @@ Desktop/onboarding-mission/ubuntu-custom
   - 컨테이너 실행
     1. 직접 제어
     <img width="1019" height="342" alt="스크린샷 2026-08-17 오후 6 01 59" src="https://github.com/user-attachments/assets/427e4fbc-c179-41b1-a929-54dd2a034fb4" />
-
+    
 
     2. 백그라운드 실행
-    
+    ```
+    # 백그라운드에서 컨테이너 실행(3600초 동안 유지)
+    docker run -d --name ubuntu-server ubuntu-custom:v1 sleep 3600
+   ```
 
-  
+    - exit 후에도 컨테이너 작동 중
+    <img width="1501" height="75" alt="스크린샷 2026-08-17 오후 7 28 57" src="https://github.com/user-attachments/assets/b26d17fb-d7b8-4869-83fd-8997a26dca71" />
 
-  - 컨테이너 실행 성공
     
 * 내가 적용한 커스텀 포인트 각각의 목적
+  
 
 * 핵심결과
 
