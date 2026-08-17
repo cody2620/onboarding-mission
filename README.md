@@ -274,6 +274,9 @@ echo
 
 # OS 정보
 cat /etc/os-release
+
+# 종료하기
+exit
 ```
 <img width="513" height="61" alt="스크린샷 2026-08-17 오후 3 42 16" src="https://github.com/user-attachments/assets/4801ef4d-9208-4002-96d0-219d2a4dd013" />
 
