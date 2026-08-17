@@ -257,6 +257,39 @@ curl http://localhost:8080
 ```
 <img width="615" height="363" alt="스크린샷 2026-08-16 오후 4 43 55" src="https://github.com/user-attachments/assets/19b355d3-ebaa-4bbd-9c21-5446d63ca43e" />
 
+5. 우분투 컨테이너 실행
+```
+# 우분투 컨테이너 진입
+docker run -it ubuntu:latest /bin/bash
+```
+<img width="454" height="172" alt="스크린샷 2026-08-17 오후 3 38 28" src="https://github.com/user-attachments/assets/c9679830-cfb9-43f2-9532-1c4056f0052c" />
+<br><br>
+
+```
+# 파일 이름만 나열
+ls
+
+# 문자열 출력
+echo
+
+# OS 정보
+cat /etc/os-release
+```
+<img width="513" height="61" alt="스크린샷 2026-08-17 오후 3 42 16" src="https://github.com/user-attachments/assets/4801ef4d-9208-4002-96d0-219d2a4dd013" />
+
+<img width="763" height="280" alt="스크린샷 2026-08-17 오후 3 56 18" src="https://github.com/user-attachments/assets/bea13b47-1a13-43e4-9de3-9a59734d5826" />
+
+# 컨테이너 종료/ 유지
+
+- 컨테이너 종료/유지(attach/exec 등)의 차이를 스스로 관찰하고 간단히 정리한다. 
+
+
+6. 기존 Dockerfile 기반 커스텀 이미지 제작
+- 아래 방식 중 하나를 선택하여 기존 Dockerfile/이미지 기반의 커스텀 이미지를 만든다.
+  * (A) 웹 서버 베이스 이미지 활용(예: NGINX/Apache 등) + 정적 콘텐츠/설정만 교체
+  * (B) Linux 베이스 이미지(예: ubuntu/alpine 등) + 기본 기능(패키지/사용자/환경변수/헬스체크 등) 추가
+
+
 ## 바운드 마운트 반영
 ```
 # 기존 컨테이너 중지 및 삭제
