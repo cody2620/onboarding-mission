@@ -502,7 +502,7 @@ docker run --rm -v my-data:/data alpine cat /data/important.txt
 
 <br><br>
 
-## 수행 항목 체크리스트(터미널/권한/Docker/Dockerfile/포트/볼륨/Git/GitHub)
+## 수행 항목 체크리스트
 - [x] 터미널 기본 조작 및 폴더 구성
 - [x] 권한 변경 실습
 - [x] Docker 설치/점검
@@ -514,9 +514,7 @@ docker run --rm -v my-data:/data alpine cat /data/important.txt
 - [x] Git 설정 + VSCode GitHub 연동
 
 
-# 검증 방법(어떤 명령으로 무엇을 확인했는지) + 결과 위치 링크
-
-# 트러블슈팅 2건 이상(문제 → 원인 가설 → 확인 → 해결/대안)
+# 트러블슈팅 (문제 → 원인 가설 → 확인 → 해결/대안)
 * 포트 볼륨 수정 후 문자 깨짐 현상
 <img width="1330" height="810" alt="포트볼륨 수정 후" src="https://github.com/user-attachments/assets/f263b99c-51af-49ab-acbb-f1597cc44bb8" />
 
@@ -548,5 +546,6 @@ HTML 내부의 <meta charset="UTF-8">을 발견하기 전에 이미 헤더 정�
 <img width="615" height="363" alt="스크린샷 2026-08-16 오후 5 05 04" src="https://github.com/user-attachments/assets/eb9b2889-11b2-42db-b2d1-8c0cb0a226d5" />
 
 - 원인: 폴더 경로가 잘못됨
+- 해결: cd 명령어로 경로 수정 후 새로고침 하니 정상화면 출력
   
 
