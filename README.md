@@ -14,7 +14,7 @@ Docker의 핵심 개념과 실무 워크플로우를 습득하고, 재현 가능
 <br>
 
 <details>
-<summary> 캡처 이미지 </summary>
+<summary>  캡처 이미지 </summary>
 
 - ### OS
 ```
@@ -42,15 +42,41 @@ git version 2.53.0
 Version: 2.0.5 (2000500)
 Commit: - (v2.0.5)
 ```
-
-- docker 버전
+docker 버전
 ```
 # docker --version
 Docker version 28.5.2, build ecc6942
 ```
+
+
+### 도커 실행 순서 
+- 도커파일 작성: 이미지 어떻게 만들지 정의
+- 이미지 빌드: 도커파일 바탕으로 이미지 생성
+  ```
+  docker build -t my-app .
+  ```
+  
+- 컨테이너 실행: 이미지를 실행해 컨테이너 실행
+  ```
+  docker run -p 8080:80 -v /home/user/logs:/var/log/nginx my-app  
+  ```
+  
+- 관리: 컨테이너 상태 확인 및 제어
+  ```
+  # 실행 중인 컨테이너 확인
+  docker ps
+  
+  # 컨테이너 중지
+  docker stop <container-id>
+  
+  # 컨테이너 삭제
+  docker rm <container-id>
+  ```
+
 </details>
 
-- docker info
+- #### docker info
+
 ```
 Client:
  Version:    28.5.2
@@ -258,6 +284,7 @@ docker images | grep onboarding-mission
 # -p 8080:80: 호스트의 8080 포트 → 컨테이너의 80 포트
 # --name: 컨테이너 이름
 docker run -d -p 8080:80 --name my-web docker-mission:v1
+docker run [옵션(--name, -p, -d)] [이미지 이름(항상 마지막)]
 
 # 실행 확인
 docker ps
