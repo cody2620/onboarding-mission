@@ -11,6 +11,8 @@ Docker의 핵심 개념과 실무 워크플로우를 습득하고, 재현 가능
 | orbstack | Version: 2.0.5 (2000500) | orbctl version |
 | docker | Docker version 28.5.2, build ecc6942 | docker --version |
 
+<br>
+
 <details>
 <summary> 캡처 이미지 </summary>
 
@@ -233,7 +235,9 @@ docker build -t onboarding-mission:v1 .
 ```
 <img width="837" height="663" alt="이미지 빌드" src="https://github.com/user-attachments/assets/6723b561-a6d6-4642-9b0b-1272f5fc8f2f" />
 
+
 ```
+# 이미지 목록 확인
 docker images
 ```
 <img width="652" height="92" alt="스크린샷 2026-08-16 오후 6 14 58" src="https://github.com/user-attachments/assets/9137ebf3-f969-4395-bedf-7e0566bdaaaf" />
@@ -371,7 +375,7 @@ exit
 # exec는 종료해도 컨테이너(ngnix)는 계속 실행돼고 있다 
 ```
 
-* 🎓 학습 요점
+🎓 학습 요점
 
 | 배운 내용 | 설명 |
 |----------|------|
