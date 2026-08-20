@@ -460,12 +460,6 @@ Desktop/onboarding-mission/ubuntu-custom
     - exit 후에도 컨테이너 작동 중
     <img width="1501" height="75" alt="스크린샷 2026-08-17 오후 7 28 57" src="https://github.com/user-attachments/assets/b26d17fb-d7b8-4869-83fd-8997a26dca71" />
 
-    
-* 내가 적용한 커스텀 포인트 각각의 목적
-  
-
-* 핵심결과
-
 
 ## 바인드 마운트 반영
 ```
@@ -510,7 +504,17 @@ EOF
  * 포트볼륨 수정 후
 <img width="948" height="629" alt="포트볼륨 수정 후 성공" src="https://github.com/user-attachments/assets/c8c9b290-cf6a-4b87-9f63-a8cd0d0df712" />
 
+ * 포트 충돌 진단
+   ```
+   # 기존 컨테이너 확인
+   docker ps
 
+   # 호스트 포트 변경
+   docker run -p 8081:80 [이미지 이름]
+   ```
+
+   
+  
 ## 볼륨 영속성
 
 * 컨테이너 삭제 후에도 데이터가 유지되는지 확인
