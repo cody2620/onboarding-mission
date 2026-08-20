@@ -293,7 +293,7 @@ docker ps
 
 <br>
 
-- ### 이미 생성된 컨테이너의 포트 변경
+- ### 컨테이너 중단 후 포트 변경
   ```
   # 1. 기존 컨테이너 중지 & 삭제
   docker stop my-web
@@ -504,13 +504,25 @@ EOF
  * 포트볼륨 수정 후
 <img width="948" height="629" alt="포트볼륨 수정 후 성공" src="https://github.com/user-attachments/assets/c8c9b290-cf6a-4b87-9f63-a8cd0d0df712" />
 
- * 포트 충돌 진단
+ * 포트 충돌 진단 및 대응
    ```
    # 기존 컨테이너 확인
    docker ps
+   
+   # 현재 열려있는 모든 파일과 네트워크 포트 조회
+   sudo lsof -i :[포트 번호]
 
+   # 리눅스 ㅊㅊ
+   netstat -nlp | grep :[포트 번호]
+   ss -nlp | grep :[포트 번호]
+
+   # 윈도우 ㅊㅊ
+   netstat -ano | findstr :[포트 번호]
+   ```
+
+   ```  
    # 호스트 포트 변경
-   docker run -p 8081:80 [이미지 이름]
+   docker run -d -p [포트번호] --name [새 컨테이너] [이미지]
    ```
 
    
