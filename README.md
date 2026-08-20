@@ -455,7 +455,7 @@ Desktop/onboarding-mission/ubuntu-custom
     ```
     # 백그라운드에서 컨테이너 실행(3600초 동안 유지)
     docker run -d --name ubuntu-server ubuntu-custom:v1 sleep 3600
-   ```
+    ```
 
     - exit 후에도 컨테이너 작동 중
     <img width="1501" height="75" alt="스크린샷 2026-08-17 오후 7 28 57" src="https://github.com/user-attachments/assets/b26d17fb-d7b8-4869-83fd-8997a26dca71" />
