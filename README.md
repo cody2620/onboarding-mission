@@ -290,7 +290,21 @@ docker run [옵션(--name, -p, -d)] [이미지 이름(항상 마지막)]
 docker ps
 ```
 <img width="1510" height="61" alt="포트 매핑" src="https://github.com/user-attachments/assets/bec5857e-dd2f-47e2-a676-fd3324773deb" />
+
+<br>
+
+- ### 이미 생성된 컨테이너의 포트 변경
+  ```
+  # 1. 기존 컨테이너 중지 & 삭제
+  docker stop my-web
+  docker rm my-web
+  
+  # 2. 새 포트로 다시 실행
+  docker run -d -p 8081:80 --name my-web my-web
+  ```
+
 <br><br>
+
 
 4. 접속 확인
 ```
