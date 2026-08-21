@@ -167,6 +167,30 @@ mkdir -p app logs volumes
 touch Dockerfile README.md
 ```
 
+- ### 폴더 이동, 삭제
+<img width="310" height="22" alt="스크린샷 2026-08-21 오후 5 54 05" src="https://github.com/user-attachments/assets/a56f9e95-a4b6-4949-8775-1a1a34fb7c1b" />
+<br>
+<img width="395" height="38" alt="스크린샷 2026-08-21 오후 5 57 31" src="https://github.com/user-attachments/assets/db18ca8e-d50e-4dc2-bf3a-0229cfe5c3d5" />
+<br>
+<img width="306" height="19" alt="스크린샷 2026-08-21 오후 5 58 30" src="https://github.com/user-attachments/assets/f89311f4-c184-478c-90ec-4c9952221921" />
+<br>
+<img width="323" height="19" alt="스크린샷 2026-08-21 오후 5 59 34" src="https://github.com/user-attachments/assets/3f1ac653-bba3-46d0-87ee-e744db1a6c6a" />
+
+
+```
+# 파일(폴더) 이동
+mv 파일명.형식 이동할 폴더/
+
+# 파일명 변경
+mv 파일명.형식 변경할 이름.형식
+
+# 파일 삭제
+rm [파일명.형식]
+
+# 폴더 삭제  
+rm -r 폴더 이름/
+```
+
 * ### 프로젝트 구조
 ```
 onboarding-mission/
